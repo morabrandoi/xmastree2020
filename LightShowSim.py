@@ -96,6 +96,8 @@ class LightShow:
         ax.set_ylabel("Y")
         ax.set_zlabel("Z")
 
+        ax.set_box_aspect([1,1,2])
+
         return fig, ax, scatter
 
 
