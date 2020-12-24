@@ -87,6 +87,8 @@ def configure_matplotlib(coords, pixel_colors):
 
     return fig, ax, scatter
 
+# YOU CAN EDIT FROM HERE DOWN
+
 def get_initial_state(coords):
     heights = []
     for i in coords:
@@ -111,41 +113,13 @@ def get_initial_state(coords):
         "c": 100              # the starting point on the vertical axis
     }
 
-def update_anim(_, coords, pixels, scatter, sleep_time=0.1):
-    # YOU CAN EDIT FROM HERE DOWN
+def update_anim_wrapper(_, coords, pixels, scatter, state):
+    update_anim(_, coords, pixels, scatter, **state)
 
-    # I get a list of the heights which is not overly useful here other than to set the max and min altitudes
-    heights = []
-    for i in coords:
-        heights.append(i[2])
-
-    min_alt = min(heights)
-    max_alt = max(heights)
-
-    # VARIOUS SETTINGS
-    dinc = 1           # how much the rotation points moves each time
-    buffer = 200       # a buffer so it does not hit to extreme top or bottom of the tree
-    slow = 0           # pause between cycles (normally zero as it is already quite slow)
-    angle = 0          # startin angle (in radians)
-    inc = 0.1          # how much the angle changes per cycle
-
-    # the two colours in GRB order
-    # if you are turning a lot of them on at once, keep their brightness down please
-    colourA = [0,50,50] # purple
-    colourB = [50,50,0] # yellow
-
-    # INITIALISE SOME VALUES
-    swap01 = 0
-    swap02 = 0
-
-    # direction it moves in
-    direction = -1
-
-    # the starting point on the vertical axis
-    c = 100 
-
+def update_anim(_, coords, pixels, scatter, angle, **state):
     # time.sleep(sleep_time)
     
+    print(state)
     LED = 0
     while LED < len(coords):
         if math.tan(angle)*coords[LED][1] <= coords[LED][2]+c:
@@ -202,5 +176,5 @@ fig, ax, scatter = configure_matplotlib(coords, pixel_colors)
 
 state = get_initial_state(coords)
 
-ani = animation.FuncAnimation(fig, update_anim, fargs=(coords, pixel_colors, scatter))
+ani = animation.FuncAnimation(fig, update_anim_wrapper, fargs=(coords, pixel_colors, scatter, state))
 plt.show()
