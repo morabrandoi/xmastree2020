@@ -91,7 +91,7 @@ class LightShow:
         
         fig = plt.figure()
         ax = fig.add_subplot(111, projection='3d')
-        scatter = ax.scatter(x_coords, y_coords, z_coords, c=self._normalize_grb_to_rgb(self.pixel_colors))
+        scatter = ax.scatter(x_coords, y_coords, z_coords, s=100, c=self._normalize_grb_to_rgb(self.pixel_colors))
         ax.set_xlabel("X")
         ax.set_ylabel("Y")
         ax.set_zlabel("Z")
@@ -163,8 +163,6 @@ class LightShow:
     def display(self):
         ani = animation.FuncAnimation(self.fig, self.update_loop)
         plt.show()
-
-    
 
 # CODE EXECUTION
 sim = LightShow()
