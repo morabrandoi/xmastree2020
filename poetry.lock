@@ -1,0 +1,17 @@
+[[package]]
+category = "main"
+description = "Standard Board mechanism for Dojo tasks"
+name = "board"
+optional = false
+python-versions = "*"
+version = "1.0"
+
+[metadata]
+content-hash = "f7f608505647cea659bb2147fcb5ee13529792ebaad8d3b3ba52fd7e13630ae7"
+python-versions = "^3.8"
+
+[metadata.files]
+board = [
+    {file = "board-1.0-py2.py3-none-any.whl", hash = "sha256:b97c986d0190a2a5181a7fe28959cd8515520b87f672796e21e1b0d32cc63e2f"},
+    {file = "board-1.0.tar.gz", hash = "sha256:cd718c3322a126d86455e24ae0cebb59a567cbdbaf03696391dccf88c8f456d6"},
+]
